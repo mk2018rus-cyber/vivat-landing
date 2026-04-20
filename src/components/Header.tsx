@@ -60,12 +60,14 @@ export default function Header() {
         <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
           <a
             href="tel:+79991234567"
+            className="header-phone"
             style={{
               color: 'var(--text)',
               textDecoration: 'none',
               fontWeight: 600,
               fontSize: 15,
               opacity: 0.9,
+              whiteSpace: 'nowrap',
             }}
           >
             +7 (999) 123-45-67
