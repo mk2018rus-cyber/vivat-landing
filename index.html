@@ -1,13 +1,676 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>landing</title>
+    <title>VIVA STROY — Полусухая стяжка пола под ключ</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg: #f3f6fb;
+        --surface: #ffffff;
+        --surface-soft: #f8fbff;
+        --text: #111827;
+        --muted: #596377;
+        --line: #d7deeb;
+        --brand: #2057f5;
+        --brand-dark: #1948cf;
+        --brand-soft: #e8eeff;
+        --accent: #ff7a26;
+        --accent-dark: #e46818;
+        --shadow: 0 24px 44px rgba(17, 24, 39, 0.1);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: Inter, sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at 80% 0%, #dbe7ff 0%, rgba(219, 231, 255, 0) 45%),
+          linear-gradient(180deg, #f6f9ff 0%, #f3f6fb 45%, #ffffff 100%);
+      }
+
+      .container {
+        width: min(1160px, calc(100% - 32px));
+        margin-inline: auto;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        margin: 0;
+        font-family: Manrope, sans-serif;
+        line-height: 1.08;
+      }
+
+      p {
+        margin: 0;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        border-bottom: 1px solid rgba(215, 222, 235, 0.9);
+        background: rgba(255, 255, 255, 0.82);
+        backdrop-filter: blur(10px);
+      }
+
+      .topbar-inner {
+        min-height: 78px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-family: Manrope, sans-serif;
+        font-weight: 800;
+        font-size: 18px;
+        letter-spacing: 0.04em;
+      }
+
+      .brand-dot {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--brand), #74a2ff);
+        box-shadow: 0 0 0 6px var(--brand-soft);
+      }
+
+      .nav {
+        display: flex;
+        gap: 18px;
+        align-items: center;
+      }
+
+      .nav a {
+        text-decoration: none;
+        color: var(--muted);
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .btn {
+        border: none;
+        border-radius: 13px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 14px 24px;
+        cursor: pointer;
+        text-decoration: none;
+        font-weight: 700;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      }
+
+      .btn-main {
+        background: linear-gradient(135deg, var(--brand), #4978ff);
+        color: #fff;
+        box-shadow: 0 12px 24px rgba(32, 87, 245, 0.28);
+      }
+
+      .btn-main:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 16px 28px rgba(32, 87, 245, 0.34);
+        background: linear-gradient(135deg, var(--brand-dark), #3c68ea);
+      }
+
+      .btn-light {
+        background: #fff;
+        color: var(--text);
+        border: 1px solid var(--line);
+      }
+
+      .hero {
+        padding: 64px 0 52px;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 30px;
+        align-items: stretch;
+      }
+
+      .eyebrow {
+        display: inline-block;
+        margin-bottom: 16px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--brand);
+        background: var(--brand-soft);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        font-size: clamp(36px, 5.5vw, 68px);
+        max-width: 16ch;
+      }
+
+      .hero-lead {
+        margin-top: 18px;
+        color: var(--muted);
+        line-height: 1.72;
+        max-width: 56ch;
+      }
+
+      .hero-actions {
+        margin-top: 28px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .hero-points {
+        margin: 24px 0 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+        max-width: 760px;
+      }
+
+      .hero-points li {
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 10px 12px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .hero-card {
+        background: linear-gradient(180deg, #ffffff 0%, #f6faff 100%);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 26px;
+        box-shadow: var(--shadow);
+      }
+
+      .hero-card h2 {
+        font-size: 30px;
+      }
+
+      .hero-card p {
+        margin-top: 12px;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      .price-row {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+        margin: 18px 0;
+      }
+
+      .price-from {
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+      }
+
+      .price-num {
+        font-family: Manrope, sans-serif;
+        font-size: 42px;
+        font-weight: 800;
+        color: var(--brand);
+      }
+
+      .field {
+        display: grid;
+        gap: 8px;
+        margin-bottom: 12px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .field input {
+        font: inherit;
+        padding: 12px;
+        border: 1px solid var(--line);
+        border-radius: 11px;
+        background: #fff;
+      }
+
+      .field input:focus {
+        outline: 2px solid #b8cbff;
+        border-color: #9db7ff;
+      }
+
+      .card-note {
+        margin-top: 10px;
+        font-size: 12px;
+      }
+
+      .section {
+        padding: 78px 0;
+      }
+
+      .section-alt {
+        background: var(--surface-soft);
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .section-head {
+        max-width: 690px;
+      }
+
+      .section-head h2 {
+        margin-top: 10px;
+        font-size: clamp(28px, 4vw, 52px);
+      }
+
+      .section-head p {
+        margin-top: 16px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .cards {
+        margin-top: 26px;
+        display: grid;
+        gap: 14px;
+      }
+
+      .cards-steps {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .cards-benefits {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .item {
+        padding: 22px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: #fff;
+      }
+
+      .item .num {
+        display: inline-flex;
+        width: 36px;
+        height: 36px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        font-size: 14px;
+        font-weight: 700;
+        color: #fff;
+        background: linear-gradient(135deg, var(--brand), #6692ff);
+      }
+
+      .item h3 {
+        margin-top: 16px;
+        font-size: 24px;
+      }
+
+      .item p {
+        margin-top: 10px;
+        color: var(--muted);
+        line-height: 1.68;
+      }
+
+      .highlights {
+        margin-top: 14px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .highlight {
+        border-radius: 14px;
+        border: 1px solid var(--line);
+        background: #fff;
+        padding: 16px;
+      }
+
+      .highlight strong {
+        display: block;
+        font-family: Manrope, sans-serif;
+        font-size: 28px;
+      }
+
+      .highlight span {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .faq-wrap {
+        width: min(780px, 100%);
+        margin-top: 24px;
+      }
+
+      details {
+        border: 1px solid var(--line);
+        background: #fff;
+        border-radius: 14px;
+        padding: 16px 18px;
+      }
+
+      details + details {
+        margin-top: 10px;
+      }
+
+      summary {
+        cursor: pointer;
+        font-weight: 600;
+      }
+
+      details p {
+        margin-top: 12px;
+        color: var(--muted);
+        line-height: 1.67;
+      }
+
+      .cta {
+        padding: 82px 0;
+      }
+
+      .cta-panel {
+        border-radius: 26px;
+        padding: 40px;
+        background:
+          linear-gradient(130deg, rgba(32, 87, 245, 0.98), rgba(82, 118, 245, 0.98)),
+          radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.36), transparent 55%);
+        color: #fff;
+        box-shadow: 0 28px 44px rgba(32, 87, 245, 0.28);
+      }
+
+      .cta-panel p {
+        margin-top: 14px;
+        max-width: 60ch;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.92);
+      }
+
+      .cta-actions {
+        margin-top: 22px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .btn-accent {
+        background: linear-gradient(135deg, var(--accent), #ff9553);
+        color: #fff;
+      }
+
+      .btn-accent:hover {
+        background: linear-gradient(135deg, var(--accent-dark), #ec8140);
+      }
+
+      .btn-ghost {
+        background: rgba(255, 255, 255, 0.16);
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+      }
+
+      .footer {
+        border-top: 1px solid var(--line);
+        background: #fff;
+      }
+
+      .footer-inner {
+        min-height: 76px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      @media (max-width: 980px) {
+        .hero-grid,
+        .cards-steps,
+        .cards-benefits,
+        .highlights,
+        .hero-points {
+          grid-template-columns: 1fr;
+        }
+
+        .topbar-inner {
+          min-height: 68px;
+        }
+
+        .nav {
+          display: none;
+        }
+
+        .cta-panel {
+          padding: 30px 22px;
+        }
+      }
+    </style>
   </head>
+
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <div class="brand"><span class="brand-dot"></span>VIVA STROY</div>
+        <nav class="nav">
+          <a href="#how">Как работаем</a>
+          <a href="#benefits">Почему мы</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+        <a class="btn btn-main" href="#form">Получить смету</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <span class="eyebrow">Полусухая стяжка пола в Москве и МО</span>
+            <h1>Цельный дизайн лендинга в одном HTML-файле</h1>
+            <p class="hero-lead">
+              Чистая современная вёрстка с полноценной визуальной системой: типографика, цветовые
+              акценты, карточки, адаптивные сетки, CTA-блоки и единая композиция на всей странице.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn btn-main" href="#form">Рассчитать стоимость</a>
+              <a class="btn btn-light" href="#how">Посмотреть этапы</a>
+            </div>
+
+            <ul class="hero-points">
+              <li>Бесплатный расчёт за 20 минут</li>
+              <li>Фиксированная цена в договоре</li>
+              <li>Гарантия на работы 5 лет</li>
+            </ul>
+          </div>
+
+          <aside class="hero-card" id="form">
+            <h2>Быстрый расчёт</h2>
+            <p>Оставьте контакты и параметры объекта — подготовим точную смету и дату старта.</p>
+
+            <div class="price-row">
+              <span class="price-from">Стоимость от</span>
+              <span class="price-num">590 ₽/м²</span>
+            </div>
+
+            <label class="field">
+              Площадь объекта (м²)
+              <input type="number" placeholder="Например: 72" />
+            </label>
+            <label class="field">
+              Район / адрес
+              <input type="text" placeholder="Например: Мытищи, Юбилейная 5" />
+            </label>
+            <label class="field">
+              Номер телефона
+              <input type="tel" placeholder="+7 (___) ___-__-__" />
+            </label>
+
+            <button class="btn btn-main" type="button">Получить расчёт</button>
+            <p class="card-note">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных.</p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section section-alt" id="how">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">Процесс работы</span>
+            <h2>Три шага до готовой стяжки</h2>
+            <p>
+              Мы сделали процесс понятным: без лишних согласований, с прозрачной сметой и
+              постоянной обратной связью на каждом этапе.
+            </p>
+          </div>
+
+          <div class="cards cards-steps">
+            <article class="item">
+              <span class="num">01</span>
+              <h3>Заявка и расчёт</h3>
+              <p>Собираем базовые данные по объекту и отправляем детальную смету в тот же день.</p>
+            </article>
+            <article class="item">
+              <span class="num">02</span>
+              <h3>Подготовка</h3>
+              <p>Согласуем материалы, сроки, логистику и фиксируем стоимость в договоре.</p>
+            </article>
+            <article class="item">
+              <span class="num">03</span>
+              <h3>Выполнение работ</h3>
+              <p>Бригада выполняет стяжку, вы принимаете результат по акту с гарантией 5 лет.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="benefits">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">Почему выбирают нас</span>
+            <h2>Сильный оффер + аккуратная реализация</h2>
+            <p>
+              Страница собрана как цельный дизайн: единая система кнопок, карточек и блоков, чтобы
+              лендинг выглядел профессионально и был готов к запуску сразу.
+            </p>
+          </div>
+
+          <div class="cards cards-benefits">
+            <article class="item">
+              <h3>Единый визуальный стиль</h3>
+              <p>Все элементы согласованы по цветам, радиусам, отступам и типографике.</p>
+            </article>
+            <article class="item">
+              <h3>Адаптивность</h3>
+              <p>Сетки и блоки корректно перестраиваются на планшетах и смартфонах.</p>
+            </article>
+            <article class="item">
+              <h3>Конверсионные блоки</h3>
+              <p>Hero + форма, преимущества, FAQ и финальный CTA выстроены в логичную воронку.</p>
+            </article>
+            <article class="item">
+              <h3>Один файл</h3>
+              <p>Вся структура и весь дизайн находятся внутри одного `index.html` без внешнего CSS.</p>
+            </article>
+          </div>
+
+          <div class="highlights">
+            <div class="highlight">
+              <strong>500+</strong>
+              <span>выполненных объектов</span>
+            </div>
+            <div class="highlight">
+              <strong>7 лет</strong>
+              <span>практического опыта</span>
+            </div>
+            <div class="highlight">
+              <strong>24/7</strong>
+              <span>связь с менеджером проекта</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-alt" id="faq">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">FAQ</span>
+            <h2>Ответы на частые вопросы</h2>
+          </div>
+
+          <div class="faq-wrap">
+            <details>
+              <summary>Сколько длится устройство полусухой стяжки?</summary>
+              <p>
+                В среднем один объект выполняется за 1 рабочий день. Срок зависит от площади и
+                сложности доступа к помещению.
+              </p>
+            </details>
+            <details>
+              <summary>Можно ли получить смету без выезда замерщика?</summary>
+              <p>
+                Да. Для предварительного расчёта достаточно площади, этажа и локации объекта.
+                Финальную смету фиксируем в договоре.
+              </p>
+            </details>
+            <details>
+              <summary>Какие гарантии вы предоставляете?</summary>
+              <p>
+                Мы даём письменную гарантию 5 лет на выполненные работы и используемые материалы.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta">
+        <div class="container">
+          <div class="cta-panel">
+            <h2>Готовы запустить проект?</h2>
+            <p>
+              Оставьте заявку сейчас — в течение 20 минут пришлём предварительный расчёт и
+              предложим ближайшую дату начала работ.
+            </p>
+            <div class="cta-actions">
+              <a class="btn btn-accent" href="#form">Отправить заявку</a>
+              <a class="btn btn-ghost" href="tel:+79999999999">Позвонить менеджеру</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <span>© 2026 VIVA STROY</span>
+        <span>Полусухая стяжка пола в Москве и Московской области</span>
+      </div>
+    </footer>
   </body>
 </html>
