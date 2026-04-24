@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { sendLead } from '../utils/sendLead'
 
 interface Props {
   onClose: () => void
@@ -13,15 +14,11 @@ export default function AbandonPopup({ onClose }: Props) {
 
   const handleSend = async () => {
     if (!phone.trim()) return
-    try {
-      await fetch('/api/leads', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ phone, messenger, source: 'abandon_popup' }),
-      })
-    } catch {
-      // fail silently
-    }
+    await sendLead({
+      source: 'abandon_popup',
+      phone,
+      messenger,
+    })
     setSent(true)
   }
 

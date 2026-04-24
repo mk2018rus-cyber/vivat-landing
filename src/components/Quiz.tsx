@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { sendLead } from '../utils/sendLead'
 
 interface QuizProps {
   onStart: () => void
@@ -72,16 +73,16 @@ export default function Quiz({ onStart, onComplete }: QuizProps) {
 
   const handleSubmit = async () => {
     if (!form.name.trim() || !form.phone.trim()) return
-    // Send lead to API
-    try {
-      await fetch('/api/leads', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      })
-    } catch {
-      // fail silently — lead still shows thank you
-    }
+    await sendLead({
+      source: 'quiz',
+      name: form.name,
+      phone: form.phone,
+      messenger: form.messenger,
+      area: form.area,
+      address: form.address,
+      floor: form.floor,
+      hasLift: form.hasLift,
+    })
     setStep('thanks')
     onComplete()
   }
